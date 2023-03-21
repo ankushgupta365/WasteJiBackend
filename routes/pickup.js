@@ -5,7 +5,7 @@ const Pickup = require('../models/PickupDetail');
 
 //in all the routes below we have used verifyTokenAnd... middleware which are imported from a file, which basically calls next fxn after getting jsonwebtoken from the headers and verifying it. if next fxn within them is called then the async fxn get it's turn to run
 
-router.post("/",verifyToken,async(req,res)=>{
+router.post("/",async(req,res)=>{
     const newPickup = new Pickup(req.body);
     try {
         const savedPickup = await newPickup.save();
@@ -14,9 +14,10 @@ router.post("/",verifyToken,async(req,res)=>{
         res.status(500).json(error);
     }
 })
-router.get("/:userId",verifyTokenAndAuthorization,async(req,res)=>{
+router.get("/",async(req,res)=>{
     try {
-        const allPickups =await Pickup.find({});
+        const allPickups = await Pickup.find({});
+
         res.status(200).json(allPickups);
      
     } catch (error) {

@@ -10,6 +10,7 @@ const pickupRoute = require('./routes/pickup')
 mongoose.connect(process.env.MONGO_URI)
                 .then(()=>{console.log("Db connection successful")})
                 .catch((err)=>{console.log(err)})
+    
 
 app.use(express.json());
 app.use(cors());
