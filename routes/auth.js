@@ -3,6 +3,7 @@ const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 
 //register
+
 router.post("/register",async(req,res)=>{
     const newUser = new User({
         username: req.body.username,
@@ -11,7 +12,7 @@ router.post("/register",async(req,res)=>{
     })
     try{
         const savedUser = await newUser.save();
-        res.status(201).json(savedUser);
+        res.status(201).json({ message: "User Authenticated Successfully" })
     }catch(err){
         res.status(500).json(err);
     }
